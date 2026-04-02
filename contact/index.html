@@ -15,6 +15,27 @@
     </nav>
     
     <h1>Contact Me</h1>
-    <p>You can reach me at: izjiang@ucsd.com</p>
+    
+    <form action="mailto:izjiang@ucsd.edu" method="POST" enctype="text/plain">
+        <label>
+            Your Email:
+            <input type="email" name="email">
+        </label>
+        <br><br>
+        
+        <label>
+            Subject:
+            <input type="text" name="subject">
+        </label>
+        <br><br>
+        
+        <label>
+            Message:
+            <textarea name="body" rows="5" cols="40"></textarea>
+        </label>
+        <br><br>
+        
+        <button>Send Email</button>
+    </form>
 </body>
 </html>
