@@ -48,7 +48,7 @@ nav a:hover {
     transform: scale(1.05);
 }
 
-/* Form styling for dark background */
+/* Contact Form Grid Layout - SIDE BY SIDE */
 input, textarea, button {
     font: inherit;
 }
@@ -57,18 +57,51 @@ input, textarea, button {
 form {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 1.5em;
+    gap: 1em;
     max-width: 600px;
     margin: 2em 0;
+    align-items: center;
 }
 
-/* Make each label span both columns */
+/* Make label contents act as direct grid items */
 label {
-    display: grid;
-    grid-template-columns: subgrid;
-    grid-column: 1 / -1;
-    color: #eee;
-    margin-bottom: 0;
+    display: contents;
+}
+
+/* Style the input fields */
+input, textarea {
+    width: 100%;
+    padding: 0.75em;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+/* Submit button styling */
+button {
+    background: var(--color-accent);
+    color: #1a1a2e;
+    padding: 0.75em 1.5em;
+    border: none;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    grid-column: 2;
+    justify-self: start;
+}
+
+button:hover {
+    background: #00e5ff;
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
 }
 
 /* Make the button span both columns */
