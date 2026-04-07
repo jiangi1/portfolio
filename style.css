@@ -293,3 +293,235 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-5px);
 }
+
+/* CV Container - adds max width and centering */
+.cv-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Header section with name and contact */
+.cv-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.cv-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff, var(--color-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.cv-contact {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.cv-contact span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Profile summary */
+.cv-summary {
+    background: rgba(0, 210, 255, 0.1);
+    border-left: 4px solid var(--color-accent);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.cv-summary p {
+    margin: 0;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* Section styling */
+.cv-section {
+    margin-bottom: 2rem;
+}
+
+.cv-section h2 {
+    font-size: 1.5rem;
+    border-left: 4px solid var(--color-accent);
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+}
+
+/* Experience and Education items */
+.cv-item {
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+.cv-item-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+}
+
+.cv-item-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+}
+
+.cv-item-subtitle {
+    font-weight: 600;
+    color: #ddd;
+}
+
+.cv-item-date {
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.cv-item-location {
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.cv-item-description {
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+}
+
+.cv-item-description ul {
+    margin: 0.5rem 0;
+    padding-left: 1.2rem;
+}
+
+.cv-item-description li {
+    margin-bottom: 0.3rem;
+    line-height: 1.5;
+}
+
+/* Skills grid */
+.cv-skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cv-skills-category {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.cv-skills-category h3 {
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.cv-skills-category ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+.cv-skills-category li {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+/* Research items */
+.cv-research-item {
+    margin-bottom: 1.5rem;
+}
+
+.cv-research-title {
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.cv-research-org {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.cv-research-details {
+    padding-left: 1rem;
+}
+
+.cv-research-details ul {
+    margin: 0.5rem 0;
+    padding-left: 1.2rem;
+}
+
+/* Projects section */
+.cv-project-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+}
+
+.cv-project-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.cv-project-title {
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.cv-project-org {
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Languages section */
+.cv-languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.cv-language {
+    background: rgba(0, 210, 255, 0.15);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cv-item-header {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .cv-contact {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .cv-skills {
+        grid-template-columns: 1fr;
+    }
+}
