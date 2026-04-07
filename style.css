@@ -49,41 +49,71 @@ nav a:hover {
 }
 
 /* Form styling for dark background */
+input, textarea, button {
+    font: inherit;
+}
+
+/* Grid layout for the form */
 form {
-    max-width: 500px;
-    margin: 20px 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5em;
+    max-width: 600px;
+    margin: 2em 0;
 }
 
+/* Make each label span both columns */
 label {
-    display: block;
-    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
     color: #eee;
+    margin-bottom: 0;
 }
 
+/* Make the button span both columns */
+button {
+    grid-column: 1 / -1;
+    justify-self: start;
+}
+
+/* Style the input fields */
 input, textarea {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    font-family: inherit;
+    padding: 0.75em;
     background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
     color: white;
+    margin-top: 0;
 }
 
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Submit button styling */
 button {
-    background-color: var(--color-accent);
+    background: var(--color-accent);
     color: #1a1a2e;
-    padding: 10px 20px;
+    padding: 0.75em 1.5em;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 40px;
     font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 button:hover {
-    background-color: #00e5ff;
+    background: #00e5ff;
     transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
 }
 
 /* Section styling for dark background */
