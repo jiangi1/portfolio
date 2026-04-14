@@ -49,3 +49,38 @@ for (let p of pages) {
   
   nav.append(a);
 }
+
+// Create the theme switcher UI
+document.body.insertAdjacentHTML(
+    'afterbegin',
+    `
+    <label class="color-scheme">
+      Theme:
+      <select>
+        <option value="light dark">Automatic</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>`
+  );
+  
+  // Function to set the color scheme
+  function setColorScheme(colorScheme) {
+    document.documentElement.style.setProperty('color-scheme', colorScheme);
+    localStorage.setItem('colorScheme', colorScheme);
+  }
+  
+  // Get reference to the select element
+  let select = document.querySelector('.color-scheme select');
+  
+  // Load saved preference from localStorage
+  if ('colorScheme' in localStorage) {
+    let savedScheme = localStorage.colorScheme;
+    select.value = savedScheme;
+    setColorScheme(savedScheme);
+  }
+  
+  // Listen for changes to the select dropdown
+  select.addEventListener('input', function (event) {
+    setColorScheme(event.target.value);
+  });

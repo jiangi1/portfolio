@@ -294,3 +294,39 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-5px);
 }
 
+/* Step 4.1: Automatic dark mode based on OS */
+:root {
+    color-scheme: light dark;
+    --color-accent: oklch(65% 50% 0);
+}
+
+/* Navigation border color that works in both modes */
+nav {
+    --border-color: oklch(50% 10% 200 / 40%);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Fix hover background for dark mode (if you have hover effects) */
+nav a:hover {
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+}
+
+/* Step 4.3: Position the theme switcher */
+.color-scheme {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 80%;
+    font-family: inherit;
+    z-index: 100;
+}
+
+/* Add padding to body to prevent content from hiding behind the switcher */
+body {
+    padding-top: 3rem;
+}
+
+/* Make select element inherit font */
+select {
+    font: inherit;
+}
