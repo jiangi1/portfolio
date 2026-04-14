@@ -1,4 +1,8 @@
-x:root {
+/* ============================================ */
+/* ROOT VARIABLES - PURPLE ACCENT */
+/* ============================================ */
+
+:root {
     --color-accent: #9b59b6;
 }
 
@@ -6,18 +10,27 @@ html {
     accent-color: var(--color-accent);
 }
 
+/* ============================================ */
+/* BASE BODY STYLES */
+/* ============================================ */
+
 body {
-    position: relative;  /* This makes body the anchor for absolute positioning */
+    position: relative;
     font: 100%/1.5 system-ui;
     max-width: 100ch;
     margin-inline: auto;
     padding: 1em;
-    padding-top: 4rem;
+    padding-top: 5rem;  /* Increased to make room for theme switcher */
 }
+
+/* ============================================ */
+/* THEME SWITCHER - TOP RIGHT CORNER */
+/* Using position: absolute as per lab instructions */
+/* ============================================ */
 
 .color-scheme {
     position: absolute;
-    top: 1rem;
+    top: 0.5rem;
     right: 1rem;
     font-size: 80%;
     font-family: inherit;
@@ -27,18 +40,23 @@ body {
     backdrop-filter: blur(8px);
 }
 
-/* Make select inherit font (from Lab 2 instruction) */
-select {
-    font: inherit;
-}
-
 .color-scheme select {
     padding: 0.3rem 0.6rem;
     border-radius: 20px;
     cursor: pointer;
+    font: inherit;
     font-size: 0.85rem;
     margin-left: 0.3rem;
 }
+
+/* Make select inherit font */
+select {
+    font: inherit;
+}
+
+/* ============================================ */
+/* DARK MODE (Glassmorphism Theme) */
+/* ============================================ */
 
 :root[data-theme="dark"] body {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -95,17 +113,25 @@ select {
     color: white;
 }
 
-:root[data-theme="dark"] h1,
+/* FIX: Make headings visible in dark mode */
+:root[data-theme="dark"] h1 {
+    font-size: 400%;
+    line-height: 1.1;
+    text-wrap: balance;
+    background: linear-gradient(135deg, #ffffff, var(--color-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
 :root[data-theme="dark"] h2,
 :root[data-theme="dark"] h3 {
     color: white;
 }
 
-:root[data-theme="dark"] h1 {
-    background: linear-gradient(135deg, #fff, var(--color-accent));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+:root[data-theme="dark"] h2 {
+    border-left: 4px solid var(--color-accent);
+    padding-left: 10px;
 }
 
 :root[data-theme="dark"] section {
@@ -141,7 +167,6 @@ select {
     background: rgba(155, 89, 182, 0.2);
 }
 
-/* Dark mode switcher styling */
 :root[data-theme="dark"] .color-scheme {
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -153,6 +178,10 @@ select {
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+/* ============================================ */
+/* LIGHT MODE (Lavender Theme) */
+/* ============================================ */
 
 :root[data-theme="light"] body {
     background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
@@ -206,13 +235,10 @@ select {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-:root[data-theme="light"] h1,
-:root[data-theme="light"] h2,
-:root[data-theme="light"] h3 {
-    color: #4a148c;
-}
-
 :root[data-theme="light"] h1 {
+    font-size: 400%;
+    line-height: 1.1;
+    text-wrap: balance;
     background: linear-gradient(135deg, #4a148c, #9c27b0);
     background-clip: text;
     -webkit-background-clip: text;
@@ -222,6 +248,11 @@ select {
 :root[data-theme="light"] h2 {
     border-left: 4px solid #9c27b0;
     padding-left: 10px;
+    color: #4a148c;
+}
+
+:root[data-theme="light"] h3 {
+    color: #4a148c;
 }
 
 :root[data-theme="light"] input,
@@ -274,7 +305,6 @@ select {
     color: #4a148c;
 }
 
-/* Light mode switcher styling */
 :root[data-theme="light"] .color-scheme {
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(156, 39, 176, 0.3);
@@ -287,6 +317,10 @@ select {
     color: #4a148c;
     border: 1px solid #ce93d8;
 }
+
+/* ============================================ */
+/* AUTOMATIC MODE (Follows OS Preference) */
+/* ============================================ */
 
 @media (prefers-color-scheme: dark) {
     :root[data-theme="auto"] body {
@@ -320,21 +354,23 @@ select {
         background: rgba(255, 255, 255, 0.2);
         transform: scale(1.05);
     }
+    :root[data-theme="auto"] h1 {
+        font-size: 400%;
+        line-height: 1.1;
+        text-wrap: balance;
+        background: linear-gradient(135deg, #ffffff, var(--color-accent));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    :root[data-theme="auto"] h2,
+    :root[data-theme="auto"] h3 {
+        color: white;
+    }
     :root[data-theme="auto"] article {
         background: rgba(255, 255, 255, 0.05);
         border-radius: 16px;
         padding: 1em;
-    }
-    :root[data-theme="auto"] h1, 
-    :root[data-theme="auto"] h2, 
-    :root[data-theme="auto"] h3 {
-        color: white;
-    }
-    :root[data-theme="auto"] h1 {
-        background: linear-gradient(135deg, #fff, var(--color-accent));
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
     }
     :root[data-theme="auto"] .color-scheme {
         background: rgba(0, 0, 0, 0.6);
@@ -382,18 +418,10 @@ select {
         background: rgba(156, 39, 176, 0.1);
         transform: scale(1.02);
     }
-    :root[data-theme="auto"] article {
-        background: rgba(255, 255, 255, 0.85);
-        border-radius: 16px;
-        padding: 1em;
-        border: 1px solid rgba(156, 39, 176, 0.15);
-    }
-    :root[data-theme="auto"] h1, 
-    :root[data-theme="auto"] h2, 
-    :root[data-theme="auto"] h3 {
-        color: #4a148c;
-    }
     :root[data-theme="auto"] h1 {
+        font-size: 400%;
+        line-height: 1.1;
+        text-wrap: balance;
         background: linear-gradient(135deg, #4a148c, #9c27b0);
         background-clip: text;
         -webkit-background-clip: text;
@@ -402,6 +430,16 @@ select {
     :root[data-theme="auto"] h2 {
         border-left: 4px solid #9c27b0;
         padding-left: 10px;
+        color: #4a148c;
+    }
+    :root[data-theme="auto"] h3 {
+        color: #4a148c;
+    }
+    :root[data-theme="auto"] article {
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 16px;
+        padding: 1em;
+        border: 1px solid rgba(156, 39, 176, 0.15);
     }
     :root[data-theme="auto"] .color-scheme {
         background: rgba(255, 255, 255, 0.9);
@@ -414,6 +452,10 @@ select {
         border: 1px solid #ce93d8;
     }
 }
+
+/* ============================================ */
+/* FORM STYLES (Shared) */
+/* ============================================ */
 
 form {
     display: grid;
@@ -450,6 +492,10 @@ button:hover {
     transform: scale(1.02);
 }
 
+/* ============================================ */
+/* PROJECTS GRID (Shared) */
+/* ============================================ */
+
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
@@ -473,6 +519,10 @@ button:hover {
     border-radius: 8px;
 }
 
+/* ============================================ */
+/* HEADINGS (Shared) */
+/* ============================================ */
+
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
     text-wrap: balance;
@@ -481,6 +531,10 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     font-size: 400%;
 }
+
+/* ============================================ */
+/* CV SHARED STYLES */
+/* ============================================ */
 
 .cv-container {
     max-width: 900px;
@@ -533,6 +587,10 @@ h1 {
     gap: 1rem;
 }
 
+/* ============================================ */
+/* RESPONSIVE DESIGN */
+/* ============================================ */
+
 @media (max-width: 768px) {
     .cv-contact {
         flex-direction: column;
@@ -554,7 +612,7 @@ h1 {
     
     .color-scheme {
         font-size: 70%;
-        top: 0.5rem;
+        top: 0.3rem;
         right: 0.5rem;
         padding: 0.2rem 0.5rem;
     }
