@@ -1,7 +1,3 @@
-/* ============================================ */
-/* ROOT VARIABLES - PURPLE ACCENT */
-/* ============================================ */
-
 :root {
     --color-accent: #9b59b6;
 }
@@ -9,10 +5,6 @@
 html {
     accent-color: var(--color-accent);
 }
-
-/* ============================================ */
-/* BASE BODY STYLES */
-/* ============================================ */
 
 body {
     font: 100%/1.5 system-ui;
@@ -22,18 +14,15 @@ body {
     padding-top: 5rem;
 }
 
-/* ============================================ */
-/* THEME SWITCHER - TOP RIGHT CORNER */
-/* ============================================ */
-
 .color-scheme {
-    position: fixed;
+    position: fixed;   /* ✅ FIX */
     top: 0.5rem;
     right: 1rem;
-    left: auto;
+    left: unset;
+    z-index: 1000;
+
     font-size: 80%;
     font-family: inherit;
-    z-index: 100;
     padding: 0.3rem 0.8rem;
     border-radius: 30px;
     backdrop-filter: blur(8px);
@@ -51,10 +40,6 @@ body {
 select {
     font: inherit;
 }
-
-/* ============================================ */
-/* DARK MODE (Glassmorphism Theme) */
-/* ============================================ */
 
 :root[data-theme="dark"] body {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -84,101 +69,16 @@ select {
 
 :root[data-theme="dark"] nav a.current {
     background: var(--color-accent);
-    box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
 }
 
 :root[data-theme="dark"] nav a:hover {
     background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-}
-
-:root[data-theme="dark"] article {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 1em;
-    transition: all 0.3s;
-}
-
-:root[data-theme="dark"] article:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-}
-
-:root[data-theme="dark"] input,
-:root[data-theme="dark"] textarea {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-:root[data-theme="dark"] h1 {
-    font-size: 400%;
-    line-height: 1.1;
-    text-wrap: balance;
-    background: linear-gradient(135deg, #ffffff, var(--color-accent));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-:root[data-theme="dark"] h2,
-:root[data-theme="dark"] h3 {
-    color: white;
-}
-
-:root[data-theme="dark"] h2 {
-    border-left: 4px solid var(--color-accent);
-    padding-left: 10px;
-}
-
-:root[data-theme="dark"] section {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-:root[data-theme="dark"] a {
-    color: var(--color-accent);
-}
-
-:root[data-theme="dark"] a:hover {
-    color: white;
-}
-
-:root[data-theme="dark"] time {
-    color: #aaa;
-}
-
-:root[data-theme="dark"] .contact-info {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-:root[data-theme="dark"] .cv-summary {
-    background: rgba(155, 89, 182, 0.1);
-    border-left: 4px solid var(--color-accent);
-}
-
-:root[data-theme="dark"] .cv-skills-category {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-:root[data-theme="dark"] .cv-language {
-    background: rgba(155, 89, 182, 0.2);
 }
 
 :root[data-theme="dark"] .color-scheme {
     background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
 }
-
-:root[data-theme="dark"] .color-scheme select {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* ============================================ */
-/* LIGHT MODE (Lavender Theme) */
-/* ============================================ */
 
 :root[data-theme="light"] body {
     background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
@@ -189,11 +89,8 @@ select {
     display: flex;
     margin-bottom: 2rem;
     background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(5px);
     border-radius: 60px;
     padding: 0.8rem;
-    border: 1px solid rgba(156, 39, 176, 0.2);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 :root[data-theme="light"] nav a {
@@ -202,415 +99,40 @@ select {
     color: #4a148c;
     text-align: center;
     padding: 0.7em;
-    font-weight: 500;
-    border-radius: 40px;
-    transition: all 0.3s;
 }
 
 :root[data-theme="light"] nav a.current {
     background: #9c27b0;
     color: white;
-    box-shadow: 0 2px 8px rgba(156, 39, 176, 0.3);
-}
-
-:root[data-theme="light"] nav a:hover {
-    background: rgba(156, 39, 176, 0.1);
-    transform: scale(1.02);
-}
-
-:root[data-theme="light"] article {
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 16px;
-    padding: 1em;
-    transition: all 0.3s;
-    border: 1px solid rgba(156, 39, 176, 0.15);
-}
-
-:root[data-theme="light"] article:hover {
-    background: white;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-:root[data-theme="light"] h1 {
-    font-size: 400%;
-    line-height: 1.1;
-    text-wrap: balance;
-    background: linear-gradient(135deg, #4a148c, #9c27b0);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-:root[data-theme="light"] h2 {
-    border-left: 4px solid #9c27b0;
-    padding-left: 10px;
-    color: #4a148c;
-}
-
-:root[data-theme="light"] h3 {
-    color: #4a148c;
-}
-
-:root[data-theme="light"] input,
-:root[data-theme="light"] textarea {
-    background: white;
-    border: 1px solid #ce93d8;
-    color: #4a148c;
-}
-
-:root[data-theme="light"] input:focus,
-:root[data-theme="light"] textarea:focus {
-    outline: none;
-    border-color: #9c27b0;
-    box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.1);
-}
-
-:root[data-theme="light"] section {
-    border-bottom: 1px solid #ce93d8;
-}
-
-:root[data-theme="light"] a {
-    color: #9c27b0;
-}
-
-:root[data-theme="light"] a:hover {
-    color: #7b1fa2;
-}
-
-:root[data-theme="light"] time {
-    color: #7b1fa2;
-}
-
-:root[data-theme="light"] .contact-info {
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid #ce93d8;
-}
-
-:root[data-theme="light"] .cv-summary {
-    background: rgba(156, 39, 176, 0.08);
-    border-left: 4px solid #9c27b0;
-}
-
-:root[data-theme="light"] .cv-skills-category {
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid #ce93d8;
-}
-
-:root[data-theme="light"] .cv-language {
-    background: rgba(156, 39, 176, 0.1);
-    color: #4a148c;
 }
 
 :root[data-theme="light"] .color-scheme {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(156, 39, 176, 0.3);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    color: #4a148c;
-}
-
-:root[data-theme="light"] .color-scheme select {
     background: white;
     color: #4a148c;
-    border: 1px solid #ce93d8;
 }
-
-/* ============================================ */
-/* AUTOMATIC MODE (Follows OS Preference) */
-/* ============================================ */
 
 @media (prefers-color-scheme: dark) {
     :root[data-theme="auto"] body {
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        background: #1a1a2e;
         color: #eee;
-    }
-    :root[data-theme="auto"] nav {
-        display: flex;
-        margin-bottom: 2rem;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 60px;
-        padding: 0.8rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    :root[data-theme="auto"] nav a {
-        flex: 1;
-        text-decoration: none;
-        color: white;
-        text-align: center;
-        padding: 0.7em;
-        font-weight: 600;
-        border-radius: 40px;
-        transition: all 0.3s;
-    }
-    :root[data-theme="auto"] nav a.current {
-        background: var(--color-accent);
-        box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
-    }
-    :root[data-theme="auto"] nav a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
-    }
-    :root[data-theme="auto"] h1 {
-        font-size: 400%;
-        line-height: 1.1;
-        text-wrap: balance;
-        background: linear-gradient(135deg, #ffffff, var(--color-accent));
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-    :root[data-theme="auto"] h2,
-    :root[data-theme="auto"] h3 {
-        color: white;
-    }
-    :root[data-theme="auto"] article {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
-        padding: 1em;
-    }
-    :root[data-theme="auto"] .color-scheme {
-        background: rgba(0, 0, 0, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
-    }
-    :root[data-theme="auto"] .color-scheme select {
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 }
 
 @media (prefers-color-scheme: light) {
     :root[data-theme="auto"] body {
-        background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        background: #f3e5f5;
         color: #4a148c;
-    }
-    :root[data-theme="auto"] nav {
-        display: flex;
-        margin-bottom: 2rem;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(5px);
-        border-radius: 60px;
-        padding: 0.8rem;
-        border: 1px solid rgba(156, 39, 176, 0.2);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    }
-    :root[data-theme="auto"] nav a {
-        flex: 1;
-        text-decoration: none;
-        color: #4a148c;
-        text-align: center;
-        padding: 0.7em;
-        font-weight: 500;
-        border-radius: 40px;
-        transition: all 0.3s;
-    }
-    :root[data-theme="auto"] nav a.current {
-        background: #9c27b0;
-        color: white;
-        box-shadow: 0 2px 8px rgba(156, 39, 176, 0.3);
-    }
-    :root[data-theme="auto"] nav a:hover {
-        background: rgba(156, 39, 176, 0.1);
-        transform: scale(1.02);
-    }
-    :root[data-theme="auto"] h1 {
-        font-size: 400%;
-        line-height: 1.1;
-        text-wrap: balance;
-        background: linear-gradient(135deg, #4a148c, #9c27b0);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-    :root[data-theme="auto"] h2 {
-        border-left: 4px solid #9c27b0;
-        padding-left: 10px;
-        color: #4a148c;
-    }
-    :root[data-theme="auto"] h3 {
-        color: #4a148c;
-    }
-    :root[data-theme="auto"] article {
-        background: rgba(255, 255, 255, 0.85);
-        border-radius: 16px;
-        padding: 1em;
-        border: 1px solid rgba(156, 39, 176, 0.15);
-    }
-    :root[data-theme="auto"] .color-scheme {
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(156, 39, 176, 0.3);
-        color: #4a148c;
-    }
-    :root[data-theme="auto"] .color-scheme select {
-        background: white;
-        color: #4a148c;
-        border: 1px solid #ce93d8;
     }
 }
-
-/* ============================================ */
-/* FORM STYLES (Shared) */
-/* ============================================ */
 
 form {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 1em;
-    max-width: 600px;
-    margin: 2em 0;
-    align-items: center;
-}
-
-label {
-    display: contents;
-}
-
-input, textarea, button, select {
-    font: inherit;
 }
 
 button {
     background: var(--color-accent);
     color: white;
-    padding: 0.75em 1.5em;
-    border: none;
     border-radius: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    grid-column: 2;
-    justify-self: start;
-}
-
-button:hover {
-    background: #8e44ad;
-    transform: scale(1.02);
-}
-
-/* ============================================ */
-/* PROJECTS GRID (Shared) */
-/* ============================================ */
-
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-    gap: 1em;
-    margin-top: 2rem;
-}
-
-.projects article {
-    display: grid;
-    grid-template-rows: subgrid;
-    grid-row: span 3;
-}
-
-.projects h2 {
-    margin: 0;
-}
-
-.projects img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-/* ============================================ */
-/* HEADINGS (Shared) */
-/* ============================================ */
-
-h1, h2, h3, h4, h5, h6 {
-    line-height: 1.1;
-    text-wrap: balance;
-}
-
-h1 {
-    font-size: 400%;
-}
-
-/* ============================================ */
-/* CV SHARED STYLES */
-/* ============================================ */
-
-.cv-container {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.cv-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--color-accent);
-}
-
-.cv-contact {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.cv-section h2 {
-    color: var(--color-accent);
-}
-
-.cv-item-header {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 0.5rem;
-}
-
-.cv-item-title {
-    font-weight: 700;
-}
-
-.cv-item-date {
-    color: var(--color-accent);
-    font-size: 0.85rem;
-}
-
-.cv-skills {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-.cv-languages {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-/* ============================================ */
-/* RESPONSIVE DESIGN */
-/* ============================================ */
-
-@media (max-width: 768px) {
-    .cv-contact {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: center;
-    }
-    
-    .cv-skills {
-        grid-template-columns: 1fr;
-    }
-    
-    form {
-        grid-template-columns: 1fr;
-    }
-    
-    button {
-        grid-column: 1;
-    }
-    
-    .color-scheme {
-        font-size: 70%;
-        top: 0.3rem;
-        right: 0.5rem;
-        padding: 0.2rem 0.5rem;
-    }
 }
