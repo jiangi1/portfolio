@@ -6,8 +6,7 @@ html {
     accent-color: var(--color-accent);
 }
 
-/* Dark background for entire page */
-body {
+:root[data-theme="dark"] body {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     color: #eee;
     font: 100%/1.5 system-ui;
@@ -17,7 +16,8 @@ body {
     padding-top: 3rem;
 }
 
-nav {
+/* Dark Glassmorphism Navigation */
+:root[data-theme="dark"] nav {
     display: flex;
     margin-bottom: 2rem;
     background: rgba(255, 255, 255, 0.1);
@@ -27,7 +27,7 @@ nav {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-nav a {
+:root[data-theme="dark"] nav a {
     flex: 1;
     text-decoration: none;
     color: white;
@@ -38,21 +38,138 @@ nav a {
     transition: all 0.3s;
 }
 
-nav a.current {
+:root[data-theme="dark"] nav a.current {
     background: var(--color-accent);
     box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
 }
 
-nav a:hover {
+:root[data-theme="dark"] nav a:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
 }
 
-input, textarea, button {
-    font: inherit;
+/* Dark Cards */
+:root[data-theme="dark"] article {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1em;
+    transition: all 0.3s;
 }
 
-form {
+:root[data-theme="dark"] article:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+/* Dark Form Inputs */
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] textarea {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+:root[data-theme="dark"] button {
+    background: var(--color-accent);
+    color: white;
+}
+
+:root[data-theme="dark"] h1,
+:root[data-theme="dark"] h2,
+:root[data-theme="dark"] h3 {
+    color: white;
+}
+
+:root[data-theme="dark"] h1 {
+    background: linear-gradient(135deg, #fff, var(--color-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+:root[data-theme="light"] body {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    color: #4a148c;
+    font: 100%/1.5 system-ui;
+    max-width: 100ch;
+    margin-inline: auto;
+    padding: 1em;
+    padding-top: 3rem;
+}
+
+/* Light Mode Navigation */
+:root[data-theme="light"] nav {
+    display: flex;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    border-radius: 60px;
+    padding: 0.5rem;
+    border: 1px solid rgba(156, 39, 176, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="light"] nav a {
+    flex: 1;
+    text-decoration: none;
+    color: #4a148c;
+    text-align: center;
+    padding: 0.7em;
+    font-weight: 500;
+    border-radius: 40px;
+    transition: all 0.3s;
+}
+
+:root[data-theme="light"] nav a.current {
+    background: #9c27b0;
+    color: white;
+    box-shadow: 0 2px 8px rgba(156, 39, 176, 0.3);
+}
+
+:root[data-theme="light"] nav a:hover {
+    background: rgba(156, 39, 176, 0.1);
+    transform: scale(1.02);
+}
+
+/* Light Mode Cards */
+:root[data-theme="light"] article {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    padding: 1em;
+    transition: all 0.3s;
+    border: 1px solid rgba(156, 39, 176, 0.15);
+}
+
+:root[data-theme="light"] article:hover {
+    background: white;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Light Mode Headings */
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3 {
+    color: #4a148c;
+}
+
+:root[data-theme="light"] h1 {
+    font-size: 400%;
+    line-height: 1.1;
+    text-wrap: balance;
+    background: linear-gradient(135deg, #4a148c, #9c27b0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+:root[data-theme="light"] h2 {
+    border-left: 4px solid #9c27b0;
+    padding-left: 10px;
+}
+
+/* Light Mode Form Inputs */
+:root[data-theme="light"] form {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 1em;
@@ -61,27 +178,30 @@ form {
     align-items: center;
 }
 
-label {
+:root[data-theme="light"] label {
     display: contents;
 }
 
-input, textarea {
+:root[data-theme="light"] input,
+:root[data-theme="light"] textarea {
     width: 100%;
     padding: 0.75em;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: white;
+    border: 1px solid #ce93d8;
     border-radius: 8px;
-    color: white;
+    color: #4a148c;
+    transition: all 0.3s;
 }
 
-input:focus, textarea:focus {
+:root[data-theme="light"] input:focus,
+:root[data-theme="light"] textarea:focus {
     outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+    border-color: #9c27b0;
+    box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.1);
 }
 
-button {
-    background: var(--color-accent);
+:root[data-theme="light"] button {
+    background: #9c27b0;
     color: white;
     padding: 0.75em 1.5em;
     border: none;
@@ -93,78 +213,119 @@ button {
     justify-self: start;
 }
 
-button:hover {
-    background: #8e44ad;
+:root[data-theme="light"] button:hover {
+    background: #7b1fa2;
     transform: scale(1.02);
-    box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
 }
 
-section {
+/* Light Mode Sections */
+:root[data-theme="light"] section {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #ce93d8;
 }
 
-article {
-    margin-bottom: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 1em;
-    transition: all 0.3s;
+/* Light Mode Links */
+:root[data-theme="light"] a {
+    color: #9c27b0;
+    text-decoration: none;
 }
 
-article:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
+:root[data-theme="light"] a:hover {
+    color: #7b1fa2;
+    text-decoration: underline;
 }
 
-article header {
-    margin-bottom: 0.5rem;
-}
-
-time {
+/* Light Mode Time */
+:root[data-theme="light"] time {
     font-style: italic;
-    color: #aaa;
+    color: #7b1fa2;
 }
 
-h1, h2, h3 {
-    color: white;
-}
-
-h1 {
-    font-size: 400%;
-    line-height: 1.1;
-    text-wrap: balance;
-    background: linear-gradient(135deg, #fff, var(--color-accent));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-h2 {
-    border-left: 4px solid var(--color-accent);
-    padding-left: 10px;
-}
-
-h3 {
-    margin-bottom: 0.25rem;
-}
-
-a {
-    color: var(--color-accent);
-}
-
-a:hover {
-    color: white;
-}
-
-.contact-info {
-    background: rgba(255, 255, 255, 0.05);
+/* Light Mode CV Specific */
+:root[data-theme="light"] .contact-info {
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 16px;
     padding: 1rem;
     text-align: center;
+    border: 1px solid #ce93d8;
 }
 
+:root[data-theme="light"] .cv-summary {
+    background: rgba(156, 39, 176, 0.08);
+    border-left: 4px solid #9c27b0;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+:root[data-theme="light"] .cv-skills-category {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid #ce93d8;
+}
+
+:root[data-theme="light"] .cv-language {
+    background: rgba(156, 39, 176, 0.1);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    color: #4a148c;
+}
+
+/* Light Mode Projects Grid */
+:root[data-theme="light"] .projects article {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid #ce93d8;
+}
+
+:root[data-theme="light"] .projects article:hover {
+    background: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================ */
+/* SHARED STYLES (Both Modes) */
+/* ============================================ */
+
+/* Theme Switcher */
+.color-scheme {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 80%;
+    font-family: inherit;
+    z-index: 100;
+}
+
+.color-scheme select {
+    padding: 0.3rem 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font: inherit;
+}
+
+:root[data-theme="dark"] .color-scheme {
+    color: #eee;
+}
+
+:root[data-theme="dark"] .color-scheme select {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+:root[data-theme="light"] .color-scheme {
+    color: #4a148c;
+}
+
+:root[data-theme="light"] .color-scheme select {
+    background: white;
+    color: #4a148c;
+    border: 1px solid #ce93d8;
+}
+
+/* Projects Grid (shared) */
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
@@ -176,15 +337,6 @@ a:hover {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 3;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 1rem;
-    transition: all 0.3s;
-}
-
-.projects article:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
 }
 
 .projects h2 {
@@ -197,25 +349,92 @@ a:hover {
     border-radius: 8px;
 }
 
+/* Headings shared */
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
     text-wrap: balance;
 }
 
-.color-scheme {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 80%;
-    font-family: inherit;
-    z-index: 100;
+/* Form shared */
+input, textarea, button {
+    font: inherit;
 }
 
-select {
-    font: inherit;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 0.3rem 0.5rem;
+/* CV shared */
+.cv-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.cv-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.cv-contact {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.cv-section h2 {
+    color: var(--color-accent);
+}
+
+.cv-item-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.cv-item-title {
+    font-weight: 700;
+}
+
+.cv-item-date {
+    color: var(--color-accent);
+    font-size: 0.85rem;
+}
+
+.cv-skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.cv-languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cv-contact {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .cv-skills {
+        grid-template-columns: 1fr;
+    }
+    
+    form {
+        grid-template-columns: 1fr;
+    }
+    
+    button {
+        grid-column: 1;
+    }
+    
+    .color-scheme {
+        font-size: 70%;
+        top: 0.3rem;
+        right: 0.5rem;
+    }
 }
