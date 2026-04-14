@@ -28,7 +28,7 @@ body {
 /* ============================================ */
 
 .color-scheme {
-    position: absolute;
+    position: fixed;
     top: 0.5rem;
     right: 1rem;
     left: auto;
