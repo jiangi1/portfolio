@@ -15,7 +15,6 @@ html {
 /* ============================================ */
 
 body {
-    position: relative;
     font: 100%/1.5 system-ui;
     max-width: 100ch;
     margin-inline: auto;
