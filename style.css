@@ -14,13 +14,27 @@ body {
     padding-top: 5rem;
 }
 
+nav {
+    display: flex;
+    margin-bottom: 2rem;
+    border-radius: 60px;
+    padding: 0.8rem;
+}
+
+nav a {
+    flex: 1;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.7em;
+    border-radius: 40px;
+    transition: all 0.3s;
+}
+
 .color-scheme {
-    position: fixed;   /* ✅ FIX */
+    position: fixed;
     top: 0.5rem;
     right: 1rem;
-    left: unset;
     z-index: 1000;
-
     font-size: 80%;
     font-family: inherit;
     padding: 0.3rem 0.8rem;
@@ -37,34 +51,20 @@ body {
     margin-left: 0.3rem;
 }
 
-select {
-    font: inherit;
-}
-
 :root[data-theme="dark"] body {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
     color: #eee;
 }
 
 :root[data-theme="dark"] nav {
-    display: flex;
-    margin-bottom: 2rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: 60px;
-    padding: 0.8rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 :root[data-theme="dark"] nav a {
-    flex: 1;
-    text-decoration: none;
     color: white;
-    text-align: center;
-    padding: 0.7em;
     font-weight: 600;
-    border-radius: 40px;
-    transition: all 0.3s;
 }
 
 :root[data-theme="dark"] nav a.current {
@@ -81,29 +81,26 @@ select {
 }
 
 :root[data-theme="light"] body {
-    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
     color: #4a148c;
 }
 
 :root[data-theme="light"] nav {
-    display: flex;
-    margin-bottom: 2rem;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 60px;
-    padding: 0.8rem;
+    border: 1px solid rgba(156, 39, 176, 0.2);
 }
 
 :root[data-theme="light"] nav a {
-    flex: 1;
-    text-decoration: none;
     color: #4a148c;
-    text-align: center;
-    padding: 0.7em;
 }
 
 :root[data-theme="light"] nav a.current {
     background: #9c27b0;
     color: white;
+}
+
+:root[data-theme="light"] nav a:hover {
+    background: rgba(156, 39, 176, 0.1);
 }
 
 :root[data-theme="light"] .color-scheme {
@@ -113,14 +110,61 @@ select {
 
 @media (prefers-color-scheme: dark) {
     :root[data-theme="auto"] body {
-        background: #1a1a2e;
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
         color: #eee;
+    }
+
+    :root[data-theme="auto"] nav {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    :root[data-theme="auto"] nav a {
+        color: white;
+        font-weight: 600;
+    }
+
+    :root[data-theme="auto"] nav a.current {
+        background: var(--color-accent);
+    }
+
+    :root[data-theme="auto"] nav a:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    :root[data-theme="auto"] .color-scheme {
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
     }
 }
 
 @media (prefers-color-scheme: light) {
     :root[data-theme="auto"] body {
-        background: #f3e5f5;
+        background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+        color: #4a148c;
+    }
+
+    :root[data-theme="auto"] nav {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(156, 39, 176, 0.2);
+    }
+
+    :root[data-theme="auto"] nav a {
+        color: #4a148c;
+    }
+
+    :root[data-theme="auto"] nav a.current {
+        background: #9c27b0;
+        color: white;
+    }
+
+    :root[data-theme="auto"] nav a:hover {
+        background: rgba(156, 39, 176, 0.1);
+    }
+
+    :root[data-theme="auto"] .color-scheme {
+        background: white;
         color: #4a148c;
     }
 }
@@ -135,4 +179,7 @@ button {
     background: var(--color-accent);
     color: white;
     border-radius: 40px;
+    padding: 0.75em 1.5em;
+    border: none;
+    cursor: pointer;
 }
