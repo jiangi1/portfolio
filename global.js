@@ -51,7 +51,7 @@ document.body.insertAdjacentHTML(
     <select>
       <option value="dark">Dark (Glassmorphism)</option>
       <option value="light">Light (Lavender)</option>
-      <option value="auto">Follow System</option>
+      <option value="auto">Automatic</option>
     </select>
   </label>`
 );
