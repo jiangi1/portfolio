@@ -6,7 +6,7 @@ function $$(selector, context = document) {
 
 const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "/"
-  : "/portfolio/";  // Your GitHub Pages repo name
+  : "/portfolio/";  // Your GitHub repository name
 
 // Define all pages
 let pages = [
@@ -50,37 +50,40 @@ for (let p of pages) {
   nav.append(a);
 }
 
-// Create the theme switcher UI
+// Create theme switcher UI
 document.body.insertAdjacentHTML(
-    'afterbegin',
-    `
-    <label class="color-scheme">
-      Theme:
-      <select>
-        <option value="light dark">Automatic</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
-    </label>`
-  );
-  
-  // Function to set the color scheme
-  function setColorScheme(colorScheme) {
-    document.documentElement.style.setProperty('color-scheme', colorScheme);
-    localStorage.setItem('colorScheme', colorScheme);
-  }
-  
-  // Get reference to the select element
-  let select = document.querySelector('.color-scheme select');
-  
-  // Load saved preference from localStorage
-  if ('colorScheme' in localStorage) {
-    let savedScheme = localStorage.colorScheme;
-    select.value = savedScheme;
-    setColorScheme(savedScheme);
-  }
-  
-  // Listen for changes to the select dropdown
-  select.addEventListener('input', function (event) {
-    setColorScheme(event.target.value);
-  });
+  'afterbegin',
+  `
+  <label class="color-scheme">
+    Theme:
+    <select>
+      <option value="auto">Automatic</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </label>`
+);
+
+// Function to set the theme
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+}
+
+// Get reference to the select element
+let select = document.querySelector('.color-scheme select');
+
+// Load saved preference from localStorage
+let savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  select.value = savedTheme;
+  setTheme(savedTheme);
+} else {
+  // Default to auto (follows OS)
+  setTheme('auto');
+}
+
+// Listen for changes to the select dropdown
+select.addEventListener('input', function(event) {
+  setTheme(event.target.value);
+});
