@@ -43,6 +43,7 @@ for (let p of pages) {
   nav.append(a);
 }
 
+// Create the theme switcher UI
 document.body.insertAdjacentHTML(
   'afterbegin',
   `
@@ -56,21 +57,26 @@ document.body.insertAdjacentHTML(
   </label>`
 );
 
-function setTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
+// Function to set the color scheme and save to localStorage
+function setColorScheme(colorScheme) {
+  document.documentElement.setAttribute('data-theme', colorScheme);
+  localStorage.setItem('colorScheme', colorScheme);
 }
 
+// Get reference to the select element
 let select = document.querySelector('.color-scheme select');
 
-let savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-  select.value = savedTheme;
-  setTheme(savedTheme);
+// Load saved preference from localStorage (persists across page loads)
+let savedScheme = localStorage.getItem('colorScheme');
+if (savedScheme) {
+  select.value = savedScheme;
+  setColorScheme(savedScheme);
 } else {
-  setTheme('dark');
+  // Default to dark if no saved preference
+  setColorScheme('dark');
 }
 
-select.addEventListener('input', function(event) {
-  setTheme(event.target.value);
+// Listen for changes to the select dropdown
+select.addEventListener('input', function (event) {
+  setColorScheme(event.target.value);
 });
