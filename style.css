@@ -62,6 +62,16 @@ nav a {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+:root[data-theme="dark"] h1 {
+    font-size: 400%;
+    line-height: 1.1;
+    text-wrap: balance;
+    background: linear-gradient(135deg, #ffffff, var(--color-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
 :root[data-theme="dark"] nav a {
     color: white;
     font-weight: 600;
@@ -88,6 +98,16 @@ nav a {
 :root[data-theme="light"] nav {
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(156, 39, 176, 0.2);
+}
+
+:root[data-theme="light"] h1 {
+    font-size: 400%;
+    line-height: 1.1;
+    text-wrap: balance;
+    background: linear-gradient(135deg, #4a148c, #9c27b0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 :root[data-theme="light"] nav a {
@@ -127,16 +147,100 @@ nav a {
 
     :root[data-theme="auto"] nav a.current {
         background: var(--color-accent);
+        box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
     }
 
     :root[data-theme="auto"] nav a:hover {
         background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
     }
 
     :root[data-theme="auto"] .color-scheme {
         background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         color: white;
     }
+
+    :root[data-theme="auto"] .color-scheme select {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Projects page - no purple border on h2 */
+    :root[data-theme="auto"] .projects article {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    :root[data-theme="auto"] .projects article:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-5px);
+    }
+
+    :root[data-theme="auto"] .projects p {
+        color: #ccc;
+    }
+
+    :root[data-theme="auto"] .projects h2 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.3rem;
+        border-left: none;
+        padding-left: 0;
+        color: white;
+    }
+
+    /* Gradient font for name */
+    :root[data-theme="auto"] h1 {
+        font-size: 400%;
+        line-height: 1.1;
+        text-wrap: balance;
+        background: linear-gradient(135deg, #ffffff, var(--color-accent));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    /* CV page h2 - keep purple border only on CV page */
+    :root[data-theme="auto"] .cv-container h2 {
+        border-left: 4px solid var(--color-accent);
+        padding-left: 10px;
+        color: white;
+    }
+
+    /* Form styles */
+    :root[data-theme="auto"] input,
+    :root[data-theme="auto"] textarea {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    :root[data-theme="auto"] input:focus,
+    :root[data-theme="auto"] textarea:focus {
+        outline: none;
+        border-color: var(--color-accent);
+        box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+    }
+
+    :root[data-theme="auto"] form button {
+        background: var(--color-accent);
+        color: white;
+    }
+
+    :root[data-theme="auto"] form button:hover {
+        background: #8e44ad;
+    }
+
+    :root[data-theme="dark"] h1 {
+    font-size: 400%;
+    line-height: 1.1;
+    text-wrap: balance;
+    background: linear-gradient(135deg, #ffffff, var(--color-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
 }
 
 @media (prefers-color-scheme: light) {
@@ -148,26 +252,104 @@ nav a {
     :root[data-theme="auto"] nav {
         background: rgba(255, 255, 255, 0.9);
         border: 1px solid rgba(156, 39, 176, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
     :root[data-theme="auto"] nav a {
         color: #4a148c;
+        font-weight: 500;
     }
 
     :root[data-theme="auto"] nav a.current {
         background: #9c27b0;
         color: white;
+        box-shadow: 0 2px 8px rgba(156, 39, 176, 0.3);
     }
 
     :root[data-theme="auto"] nav a:hover {
         background: rgba(156, 39, 176, 0.1);
+        transform: scale(1.02);
     }
 
     :root[data-theme="auto"] .color-scheme {
-        background: white;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(156, 39, 176, 0.3);
         color: #4a148c;
     }
+
+    :root[data-theme="auto"] .color-scheme select {
+        background: white;
+        color: #4a148c;
+        border: 1px solid #ce93d8;
+    }
+
+    /* Projects page - no purple border on h2 */
+    :root[data-theme="auto"] .projects article {
+        background: white;
+        border: 1px solid rgba(156, 39, 176, 0.15);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    :root[data-theme="auto"] .projects article:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    :root[data-theme="auto"] .projects p {
+        color: #555;
+    }
+
+    :root[data-theme="auto"] .projects h2 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.3rem;
+        border-left: none;
+        padding-left: 0;
+        color: #4a148c;
+    }
+
+    /* Gradient font for name */
+    :root[data-theme="auto"] h1 {
+        font-size: 400%;
+        line-height: 1.1;
+        text-wrap: balance;
+        background: linear-gradient(135deg, #4a148c, #9c27b0);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    /* CV page h2 - keep purple border only on CV page */
+    :root[data-theme="auto"] .cv-container h2 {
+        border-left: 4px solid #9c27b0;
+        padding-left: 10px;
+        color: #4a148c;
+    }
+
+    /* Form styles */
+    :root[data-theme="auto"] input,
+    :root[data-theme="auto"] textarea {
+        background: white;
+        border: 1px solid #ce93d8;
+        color: #4a148c;
+    }
+
+    :root[data-theme="auto"] input:focus,
+    :root[data-theme="auto"] textarea:focus {
+        outline: none;
+        border-color: #9c27b0;
+        box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.1);
+    }
+
+    :root[data-theme="auto"] form button {
+        background: var(--color-accent);
+        color: white;
+    }
+
+    :root[data-theme="auto"] form button:hover {
+        background: #7b1fa2;
+    }
 }
+
 form {
     display: grid;
     grid-template-columns: auto 1fr;
