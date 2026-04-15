@@ -173,6 +173,38 @@ form {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 1em;
+    max-width: 600px;
+    margin: 2em 0;
+    align-items: center;
+}
+
+label {
+    display: contents;
+}
+
+input, textarea, button, select {
+    font: inherit;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.75em;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] textarea {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+:root[data-theme="light"] input,
+:root[data-theme="light"] textarea {
+    background: white;
+    border: 1px solid #ce93d8;
+    color: #4a148c;
 }
 
 button {
@@ -182,4 +214,20 @@ button {
     padding: 0.75em 1.5em;
     border: none;
     cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    grid-column: 2;
+    justify-self: start;
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+:root[data-theme="dark"] button:hover {
+    background: #8e44ad;
+}
+
+:root[data-theme="light"] button:hover {
+    background: #7b1fa2;
 }
