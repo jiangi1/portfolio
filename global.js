@@ -80,3 +80,27 @@ if (savedScheme) {
 select.addEventListener('input', function (event) {
   setColorScheme(event.target.value);
 });
+
+let contactForm = document.querySelector('form');
+
+// Add submit event listener if the form exists
+contactForm?.addEventListener('submit', function(event) {
+    // Prevent default form submission
+    event.preventDefault();
+    
+    // Create FormData object from the form
+    let data = new FormData(contactForm);
+    
+    // Build URL parameters
+    let params = [];
+    for (let [name, value] of data) {
+        // Encode each value properly for URLs
+        params.push(`${name}=${encodeURIComponent(value)}`);
+    }
+    
+    // Build the final URL
+    let url = contactForm.action + '?' + params.join('&');
+    
+    // Open the email client with the encoded data
+    location.href = url;
+});
