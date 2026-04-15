@@ -231,3 +231,76 @@ button:hover {
 :root[data-theme="light"] button:hover {
     background: #7b1fa2;
 }
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.projects article {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    border-radius: 16px;
+    padding: 1rem;
+    transition: all 0.3s;
+}
+
+:root[data-theme="dark"] .projects article {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .projects article:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+:root[data-theme="light"] .projects article {
+    background: white;
+    border: 1px solid rgba(156, 39, 176, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="light"] .projects article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.projects h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+}
+
+.projects img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.projects p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+:root[data-theme="dark"] .projects p {
+    color: #ccc;
+}
+
+:root[data-theme="light"] .projects p {
+    color: #555;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: 400%;
+    line-height: 1.1;
+    text-wrap: balance;
+}
