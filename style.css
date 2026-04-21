@@ -539,3 +539,17 @@ form button:hover {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+.projects article {
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.projects p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
