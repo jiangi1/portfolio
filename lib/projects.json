@@ -1,19 +1,22 @@
 [
     {
-        "title": "Lorem ipsum dolor sit amet.",
+        "title": "Neural Style Transfer",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, porro?"
-    },
-    {
-        "title": "Voluptatem, laborum. Alias, nostrum aut.",
+        "description": "Implemented a Neural Style Transfer model using PyTorch, developing the constructor class to initialize and configure the model architecture for optimal style transfer performance."
+      },
+      {
+        "title": "Rating the Recipe: A Data Story",
+        "year": "2026",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Ad quos, quia, iusto ipsam aut a accusantium rerum consequatur itaque quisquam laborum? Voluptatibus, blanditiis dolorum."
-    },
-    {
-        "title": "Dolorum ut quisquam alias eaque.",
+        "description": "Analyzed 1.1M+ user reviews and 231K+ recipes from Food.com using Python. Performed statistical hypothesis testing and built random forest regression models."
+      },
+      {
+        "title": "Project 2: Persuasive Visualization",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Iure quidem nobis modi, numquam ipsum accusamus! Itaque totam nobis sapiente maiores error, provident eius optio."
-    },
+        "description": "A group project exploring the ethical boundaries of data visualization. Created opposing visualizations from a single dataset with documented design decisions."
+      },
     {
         "title": "Rerum corporis fugit officiis iusto!",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",

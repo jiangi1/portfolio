@@ -498,3 +498,44 @@ form button:hover {
         grid-template-columns: 1fr;
     }
 }
+
+#profile-stats {
+    margin-top: 3rem;
+    padding: 1rem;
+    border-radius: 16px;
+}
+
+#profile-stats dl {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    text-align: center;
+    margin: 0;
+}
+
+#profile-stats dt {
+    font-weight: bold;
+    grid-row: 1;
+}
+
+#profile-stats dd {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    grid-row: 2;
+}
+
+:root[data-theme="dark"] #profile-stats {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+:root[data-theme="light"] #profile-stats {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(156, 39, 176, 0.15);
+}
+
+@media (max-width: 768px) {
+    #profile-stats dl {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
