@@ -12,7 +12,7 @@
         "description": "Analyzed 1.1M+ user reviews and 231K+ recipes from Food.com using Python. Performed statistical hypothesis testing and built random forest regression models."
       },
       {
-        "title": "Project 2: Persuasive Visualization",
+        "title": "Project 2: Persuasive/Deceptive Visualization",
         "year": "2026",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "A project exploring the ethical boundaries of data visualization. Created opposing visualizations from a single dataset with documented design decisions."
