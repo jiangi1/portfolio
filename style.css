@@ -559,3 +559,89 @@ form button:hover {
     margin-block: 2em;
     overflow: visible;
 }
+
+.chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    gap: 0.8rem;
+    list-style: none;
+    padding: 1rem;
+    margin: 0;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    flex: 1;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.swatch {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 4px;
+    background-color: var(--color);
+}
+
+.legend em {
+    font-style: normal;
+    font-size: 0.85em;
+    color: #888;
+}
+
+.swatch {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;  
+    background-color: var(--color);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;  
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.legend-item:hover {
+    background: rgba(128, 128, 128, 0.15);
+    transform: translateX(3px);
+}
+
+:root[data-theme="dark"] .legend {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .legend-item {
+    color: #eee;
+}
+
+:root[data-theme="light"] .legend {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(156, 39, 176, 0.15);
+}
+
+:root[data-theme="light"] .legend-item {
+    color: #4a148c;
+}

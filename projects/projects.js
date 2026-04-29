@@ -14,16 +14,33 @@ async function loadProjects() {
         projectsTitle.innerHTML = `My Projects (${projects.length} projects)`;
     }
     
-    let data = [1, 2, 3, 4, 5, 5];
+    let rolledData = d3.rollups(
+        projects,
+        (v) => v.length, 
+        (d) => d.year    
+    );
     
-    let pieGenerator = d3.pie();
+    let data = rolledData.map(([year, count]) => {
+        return { value: count, label: year };
+    });
+    
+    let pieGenerator = d3.pie().value((d) => d.value);
     let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
     
     let arcData = pieGenerator(data);
     let arcs = arcData.map((d) => arcGenerator(d));
     
-    let colors = d3.scaleOrdinal(d3.schemeTableau10);
-    
+    let colors = d3.scaleOrdinal([
+        '#9B59B6',  // Purple (accent)
+        '#2E86C1',  // Deep blue
+        '#E84393',  // Hot pink
+        '#8E44AD',  // Dark purple
+        '#1ABC9C',  // Teal
+        '#3498DB',  // Bright blue
+        '#D3548C',  // Dusky pink
+        '#6C5CE7',  // Periwinkle
+    ]);
+
     const svg = d3.select('#projects-pie-plot');
     svg.selectAll('*').remove();
     
@@ -31,6 +48,17 @@ async function loadProjects() {
         svg.append('path')
             .attr('d', arc)
             .attr('fill', colors(idx));
+    });
+    
+    const legend = d3.select('.legend');
+    legend.selectAll('*').remove();
+    
+    data.forEach((d, idx) => {
+        legend
+            .append('li')
+            .attr('style', `--color: ${colors(idx)}`)
+            .attr('class', 'legend-item')
+            .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
     });
 }
 
