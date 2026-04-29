@@ -14,25 +14,15 @@ async function loadProjects() {
         projectsTitle.innerHTML = `My Projects (${projects.length} projects)`;
     }
     
-    // STEP 1.4: Static pie chart with two slices
-    let data = [1, 2];
-    let total = 0;
-    for (let d of data) {
-        total += d;
-    }
+    let data = [1, 2, 3, 4, 5, 5];
     
-    let angle = 0;
-    let arcData = [];
-    for (let d of data) {
-        let endAngle = angle + (d / total) * 2 * Math.PI;
-        arcData.push({ startAngle: angle, endAngle });
-        angle = endAngle;
-    }
-    
+    let pieGenerator = d3.pie();
     let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+    
+    let arcData = pieGenerator(data);
     let arcs = arcData.map((d) => arcGenerator(d));
     
-    let colors = ['gold', 'purple'];
+    let colors = d3.scaleOrdinal(d3.schemeTableau10);
     
     const svg = d3.select('#projects-pie-plot');
     svg.selectAll('*').remove();
@@ -40,7 +30,7 @@ async function loadProjects() {
     arcs.forEach((arc, idx) => {
         svg.append('path')
             .attr('d', arc)
-            .attr('fill', colors[idx]);
+            .attr('fill', colors(idx));
     });
 }
 
