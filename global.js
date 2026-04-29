@@ -57,51 +57,39 @@ document.body.insertAdjacentHTML(
   </label>`
 );
 
-// Function to set the color scheme and save to localStorage
 function setColorScheme(colorScheme) {
   document.documentElement.setAttribute('data-theme', colorScheme);
   localStorage.setItem('colorScheme', colorScheme);
 }
 
-// Get reference to the select element
 let select = document.querySelector('.color-scheme select');
 
-// Load saved preference from localStorage (persists across page loads)
 let savedScheme = localStorage.getItem('colorScheme');
 if (savedScheme) {
   select.value = savedScheme;
   setColorScheme(savedScheme);
 } else {
-  // Default to dark if no saved preference
   setColorScheme('dark');
 }
 
-// Listen for changes to the select dropdown
 select.addEventListener('input', function (event) {
   setColorScheme(event.target.value);
 });
 
 let contactForm = document.querySelector('form');
 
-// Add submit event listener if the form exists
 contactForm?.addEventListener('submit', function(event) {
-    // Prevent default form submission
     event.preventDefault();
     
-    // Create FormData object from the form
     let data = new FormData(contactForm);
     
-    // Build URL parameters
     let params = [];
     for (let [name, value] of data) {
-        // Encode each value properly for URLs
         params.push(`${name}=${encodeURIComponent(value)}`);
     }
     
-    // Build the final URL
     let url = contactForm.action + '?' + params.join('&');
     
-    // Open the email client with the encoded data
     location.href = url;
 });
 
