@@ -553,3 +553,9 @@ form button:hover {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+#projects-pie-plot {
+    max-width: 20em;
+    margin-block: 2em;
+    overflow: visible;
+}
