@@ -41,6 +41,11 @@ function renderPieChart(projectsToPlot) {
         return { value: count, label: year };
     });
     
+    // Sort data by year in ascending order
+    data.sort((a, b) => {
+        return parseInt(a.label) - parseInt(b.label);
+    });
+    
     let pieGenerator = d3.pie().value((d) => d.value);
     let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
     
