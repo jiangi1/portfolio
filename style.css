@@ -734,3 +734,130 @@ form button:hover {
   :root[data-theme="dark"] .stats {
     background: rgba(255, 255, 255, 0.05);
   }
+
+/* Gridlines for scatterplot */
+.gridlines line {
+    stroke: #ccc;
+    stroke-opacity: 0.3;
+    stroke-dasharray: 4;
+  }
+  
+  .gridlines .domain {
+    display: none;
+  }
+  
+  .gridlines .tick line {
+    stroke: #ccc;
+    stroke-opacity: 0.3;
+    stroke-dasharray: 4;
+  }
+  
+  #chart svg {
+    background: rgba(128, 128, 128, 0.02);
+    border-radius: 12px;
+    margin: 1rem 0;
+    overflow: visible;
+  }
+  
+  #chart svg text {
+    font-family: inherit;
+    font-size: 11px;
+  }
+  
+  :root[data-theme="dark"] #chart svg text {
+    fill: #eee;
+  }
+  
+  :root[data-theme="dark"] .gridlines line {
+    stroke: #555;
+  }
+
+  /* Tooltip styling */
+#commit-tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    min-width: 260px;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  #commit-tooltip dt {
+    color: #9b59b6;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+  
+  #commit-tooltip dt:first-child {
+    margin-top: 0;
+  }
+  
+  #commit-tooltip dd {
+    margin: 0 0 0.5rem 0;
+  }
+  
+  #commit-tooltip a {
+    color: #9b59b6;
+    text-decoration: none;
+  }
+  
+  #commit-tooltip a:hover {
+    text-decoration: underline;
+  }
+  
+  :root[data-theme="light"] #commit-tooltip {
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    border-color: rgba(156, 39, 176, 0.2);
+  }
+  
+  :root[data-theme="light"] #commit-tooltip dt {
+    color: #9b59b6;
+  }
+  
+  /* Circle hover animations */
+  circle {
+    transition: all 0.2s ease;
+  }
+  
+  /* Selected dots styling */
+circle.selected {
+    fill: #ff6b6b !important;
+    stroke: white;
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.3));
+  }
+  
+  #selection-count {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    color: #888;
+  }
+  
+  #language-breakdown {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.25rem 1rem;
+  }
+  
+  #language-breakdown dt {
+    font-weight: normal;
+    color: #888;
+  }
+  
+  #language-breakdown dd {
+    margin: 0;
+    text-align: right;
+    font-weight: bold;
+  }
+  
+  :root[data-theme="dark"] #language-breakdown dt {
+    color: #aaa;
+  }
