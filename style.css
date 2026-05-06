@@ -704,3 +704,33 @@ form button:hover {
     transform: scale(1.05);
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
 }
+
+/* Stats styling for meta page */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(128, 128, 128, 0.05);
+    border-radius: 12px;
+  }
+  
+  .stats dt {
+    font-weight: normal;
+    color: #888;
+  }
+  
+  .stats dd {
+    font-weight: bold;
+    margin: 0;
+    text-align: right;
+  }
+  
+  :root[data-theme="dark"] .stats dt {
+    color: #aaa;
+  }
+  
+  :root[data-theme="dark"] .stats {
+    background: rgba(255, 255, 255, 0.05);
+  }

@@ -8,14 +8,17 @@ const BASE_PATH = (location.hostname === "localhost" || location.hostname === "1
   ? "/"
   : "/portfolio/";
 
+// PAGES ARRAY - ONLY ONCE, with Meta included
 let pages = [
   { url: '', title: 'Home' },
   { url: 'projects/', title: 'Projects' },
   { url: 'contact/', title: 'Contact' },
   { url: 'resume.html', title: 'CV' },
+  { url: 'meta/', title: 'Meta' },
   { url: 'https://github.com/jiangi1', title: 'GitHub', external: true }
 ];
 
+// Create navigation
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
@@ -43,7 +46,7 @@ for (let p of pages) {
   nav.append(a);
 }
 
-// Create the theme switcher UI
+// THEME SWITCHER - ONLY ONCE
 document.body.insertAdjacentHTML(
   'afterbegin',
   `
@@ -76,54 +79,49 @@ select.addEventListener('input', function (event) {
   setColorScheme(event.target.value);
 });
 
+// Contact form handler
 let contactForm = document.querySelector('form');
-
 contactForm?.addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    let data = new FormData(contactForm);
-    
-    let params = [];
-    for (let [name, value] of data) {
-        params.push(`${name}=${encodeURIComponent(value)}`);
-    }
-    
-    let url = contactForm.action + '?' + params.join('&');
-    
-    location.href = url;
+  event.preventDefault();
+  let data = new FormData(contactForm);
+  let params = [];
+  for (let [name, value] of data) {
+    params.push(`${name}=${encodeURIComponent(value)}`);
+  }
+  let url = contactForm.action + '?' + params.join('&');
+  location.href = url;
 });
 
+// Export functions
 export async function fetchJSON(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch: ${response.statusText}`);
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error fetching or parsing JSON data:', error);
-      return [];
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.statusText}`);
     }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+    return [];
   }
+}
 
-  export function renderProjects(projects, containerElement, headingLevel = 'h2') {
-    if (!containerElement) return;
-    
-    containerElement.innerHTML = '';
-    
-    for (let project of projects) {
-      const article = document.createElement('article');
-      article.innerHTML = `
-        <${headingLevel}>${project.title}</${headingLevel}>
-        <img src="${project.image}" alt="${project.title}">
-        <div class="project-year">${project.year}</div>
-        <p>${project.description}</p>
-      `;
-      containerElement.appendChild(article);
-    }
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  if (!containerElement) return;
+  containerElement.innerHTML = '';
+  for (let project of projects) {
+    const article = document.createElement('article');
+    article.innerHTML = `
+      <${headingLevel}>${project.title}</${headingLevel}>
+      <img src="${project.image}" alt="${project.title}">
+      <div class="project-year">${project.year}</div>
+      <p>${project.description}</p>
+    `;
+    containerElement.appendChild(article);
   }
-  
-  export async function fetchGitHubData(username) {
-    return fetchJSON(`https://api.github.com/users/${username}`);
-  }
+}
+
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}
