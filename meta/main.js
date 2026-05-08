@@ -224,6 +224,11 @@ function renderScatterPlot(commits) {
       return `${hour.toString().padStart(2, '0')}:00`;
     }));
   
+  // Add brush FIRST
+  const brush = brushSelector(commits, xScale, yScale);
+  svg.call(brush);
+  
+  // Then add dots so they are on top of brush overlay
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
   
   svg.selectAll('circle')
@@ -253,9 +258,8 @@ function renderScatterPlot(commits) {
       updateTooltipVisibility(false);
     });
   
-  const brush = brushSelector(commits, xScale, yScale);
-  svg.call(brush);
-  svg.selectAll('.dots, .overlay ~ *').raise();
+  // Raise dots above brush overlay
+  svg.selectAll('circle').raise();
 }
 
 const data = await loadData();
