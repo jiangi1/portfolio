@@ -17,12 +17,13 @@
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "A project exploring the ethical boundaries of data visualization. Created opposing visualizations from a single dataset with documented design decisions."
       },
-    {
-        "title": "Rerum corporis fugit officiis iusto!",
-        "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Labore, excepturi maiores voluptatibus error, iure odio repudiandae, facilis corrupti laborum neque ab commodi cum. Vel."
-    },
+      {
+        "title": "BikeWatching - Boston Bike Traffic Visualization",
+        "year": "2026",
+        "image": "images/bikewatching-preview.png",
+        "description": "Interactive map visualization of Bluebike traffic in the Boston area. Features dynamic filtering by time of day, color-coded stations showing departure/arrival ratios, and responsive circle sizing based on traffic volume. Built with Mapbox GL JS and D3.",
+        "url": "https://jiangi1.github.io/bikewatching/"
+      },
     {
         "title": "Reiciendis consequuntur nemo inventore impedit.",
         "year": "2026",
