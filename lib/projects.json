@@ -20,7 +20,7 @@
       {
         "title": "BikeWatching - Boston Bike Traffic Visualization",
         "year": "2026",
-        "image": "images/bikewatching-preview.png",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Interactive map visualization of Bluebike traffic in the Boston area. Features dynamic filtering by time of day, color-coded stations showing departure/arrival ratios, and responsive circle sizing based on traffic volume. Built with Mapbox GL JS and D3.",
         "url": "https://jiangi1.github.io/bikewatching/"
       },
