@@ -1,11 +1,14 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 let commits = [];
+let filteredCommits = [];
 let xScale = null;
 let yScale = null;
 let svg = null;
 let radiusScale = null;
 let timeScale = null;
+let scroller = null;
 let fileColorScale = d3.scaleOrdinal(['#4c72b0', '#dd8452', '#55a868', '#c44e52', '#8172b2', '#ccb974', '#9467bd']);
 
 async function loadData() {
@@ -53,22 +56,15 @@ function renderStats(commitsData) {
     const totalLoc = commitsData.flatMap(d => d.lines).length;
     const fileCount = new Set(commitsData.flatMap(d => d.lines.map(l => l.file))).size;
     
-    // Get current theme
     const theme = document.documentElement.getAttribute('data-theme');
-    
-    // Determine if we should use dark mode colors
     let isDark = false;
     if (theme === 'dark') {
         isDark = true;
     } else if (theme === 'auto') {
         isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    } else {
-        isDark = false;
     }
     
-    // Set colors based on theme
     let bgColor, labelColor, valueColor;
-    
     if (isDark) {
         bgColor = 'rgba(255, 255, 255, 0.08)';
         labelColor = '#ccc';
@@ -95,7 +91,6 @@ function renderStats(commitsData) {
             </div>
         </div>
     `;
-    
     d3.select('#stats').html(statsHtml);
 }
 
@@ -136,7 +131,6 @@ function renderScatterPlot(commitsData) {
     const [minLines, maxLines] = d3.extent(commitsData, d => d.totalLines);
     radiusScale = d3.scaleSqrt().domain([minLines || 1, maxLines || 10]).range([6, 35]);
     
-    // X-Axis
     const xAxis = d3.axisBottom(xScale)
         .tickFormat(d3.timeFormat('%b %d, %Y'))
         .ticks(8);
@@ -154,7 +148,6 @@ function renderScatterPlot(commitsData) {
         .attr('dy', '0.5em')
         .style('text-anchor', 'end');
     
-    // Y-Axis
     const yAxis = d3.axisLeft(yScale)
         .tickValues([0, 3, 6, 9, 12, 15, 18, 21, 24])
         .tickFormat(d => {
@@ -173,7 +166,6 @@ function renderScatterPlot(commitsData) {
         .style('font-size', '20px')
         .style('font-family', 'system-ui, sans-serif');
     
-    // X-axis label
     svg.append('text')
         .attr('x', width / 2)
         .attr('y', height - 15)
@@ -183,7 +175,6 @@ function renderScatterPlot(commitsData) {
         .style('fill', '#666')
         .text('Commit Date');
     
-    // Y-axis label
     svg.append('text')
         .attr('transform', 'rotate(-90)')
         .attr('x', -(height / 2))
@@ -194,7 +185,6 @@ function renderScatterPlot(commitsData) {
         .style('fill', '#666')
         .text('Time of Day');
     
-    // Gridlines
     svg.append('g')
         .attr('class', 'gridlines')
         .attr('transform', `translate(${margin.left}, 0)`)
@@ -207,7 +197,6 @@ function renderScatterPlot(commitsData) {
     
     svg.selectAll('.gridlines .domain').remove();
     
-    // Circles - no borders
     svg.selectAll('circle')
         .data(commitsData)
         .join('circle')
@@ -300,10 +289,11 @@ function renderFiles(commitsData) {
     });
 }
 
-function generateStories() {
+// Generate stories based on filtered commits
+function generateStories(filteredCommitsData) {
     const container = d3.select('#scatter-story').html('');
     
-    commits.forEach((commit, i) => {
+    filteredCommitsData.forEach((commit, i) => {
         const dateStr = commit.datetime.toLocaleDateString('en', { month: 'short', day: 'numeric', year: 'numeric' });
         const timeStr = commit.datetime.toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' });
         
@@ -325,16 +315,37 @@ function onTimeSliderChange() {
     const maxTime = timeScale.invert(progress);
     document.getElementById('commit-time').textContent = maxTime.toLocaleString('en', { dateStyle: 'long', timeStyle: 'short' });
     
-    const filtered = commits.filter(d => d.datetime <= maxTime);
-    updateScatterPlot(filtered);
-    renderFiles(filtered);
-    renderStats(filtered);
+    filteredCommits = commits.filter(d => d.datetime <= maxTime);
+    updateScatterPlot(filteredCommits);
+    renderFiles(filteredCommits);
+    renderStats(filteredCommits);
+    generateStories(filteredCommits);
 }
 
-// Watch for theme changes to update stats colors
+function setupScrollama() {
+    if (scroller) {
+        scroller.destroy();
+    }
+    scroller = scrollama();
+    scroller.setup({
+        container: '#scrolly-1',
+        step: '.step',
+        offset: 0.5
+    }).onStepEnter(response => {
+        const commitId = response.element.getAttribute('data-commit-id');
+        const commit = filteredCommits.find(c => c.id === commitId);
+        if (commit) {
+            const progress = timeScale(commit.datetime);
+            document.getElementById('commit-progress').value = progress;
+            onTimeSliderChange();
+        }
+    });
+}
+
+// Watch for theme changes
 function setupThemeObserver() {
     const observer = new MutationObserver(() => {
-        renderStats(commits.filter(d => d.datetime <= (timeScale ? timeScale.invert(Number(document.getElementById('commit-progress').value)) : new Date())));
+        renderStats(filteredCommits);
     });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 }
@@ -349,14 +360,15 @@ timeScale = d3.scaleTime()
     .range([0, 100]);
 
 const initialMaxTime = timeScale.invert(100);
-const initialFiltered = commits.filter(d => d.datetime <= initialMaxTime);
+filteredCommits = commits.filter(d => d.datetime <= initialMaxTime);
 
-renderStats(initialFiltered);
-renderScatterPlot(initialFiltered);
-renderFiles(initialFiltered);
-generateStories();
+renderStats(filteredCommits);
+renderScatterPlot(filteredCommits);
+renderFiles(filteredCommits);
+generateStories(filteredCommits);
 
 document.getElementById('commit-progress').addEventListener('input', onTimeSliderChange);
 onTimeSliderChange();
 
+setupScrollama();
 setupThemeObserver();
