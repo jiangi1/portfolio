@@ -1,0 +1,623 @@
+/* Stats container */
+.stats-container {
+    margin-bottom: 2rem;
+}
+
+/* Filter controls */
+.filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-radius: 60px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+.filter-controls label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    font-weight: 500;
+    color: #333;
+}
+
+#commit-progress {
+    flex: 1;
+    height: 4px;
+    border-radius: 4px;
+    background: #e8e8e8;
+    -webkit-appearance: none;
+}
+
+#commit-progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #9b59b6;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+#commit-progress::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+#commit-time {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #333;
+    background: #f8f8f8;
+    padding: 0.3rem 0.8rem;
+    border-radius: 30px;
+    min-width: 200px;
+    text-align: center;
+}
+
+/* Dark mode slider */
+:root[data-theme="dark"] .filter-controls {
+    background: #1e1e2e;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="dark"] .filter-controls label {
+    color: #ccc;
+}
+
+:root[data-theme="dark"] #commit-progress {
+    background: #2a2a3a;
+}
+
+:root[data-theme="dark"] #commit-progress::-webkit-slider-thumb {
+    background: #bb86fc;
+    border: 2px solid #1e1e2e;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+:root[data-theme="dark"] #commit-time {
+    background: #2a2a3a;
+    color: #bb86fc;
+}
+
+/* Automatic mode - follows system */
+@media (prefers-color-scheme: dark) {
+    :root[data-theme="auto"] .filter-controls {
+        background: #1e1e2e;
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    :root[data-theme="auto"] .filter-controls label {
+        color: #ccc;
+    }
+    :root[data-theme="auto"] #commit-progress {
+        background: #2a2a3a;
+    }
+    :root[data-theme="auto"] #commit-progress::-webkit-slider-thumb {
+        background: #bb86fc;
+        border: 2px solid #1e1e2e;
+    }
+    :root[data-theme="auto"] #commit-time {
+        background: #2a2a3a;
+        color: #bb86fc;
+    }
+    :root[data-theme="auto"] .step {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    :root[data-theme="auto"] .step:hover {
+        background: rgba(155, 89, 182, 0.2);
+    }
+    :root[data-theme="auto"] .legend {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    :root[data-theme="auto"] .legend h3 {
+        color: #aaa;
+    }
+    :root[data-theme="auto"] .legend-item {
+        color: #ccc;
+    }
+    :root[data-theme="auto"] .files-grid > div {
+        background: rgba(255, 255, 255, 0.03);
+    }
+    :root[data-theme="auto"] .files-grid dt {
+        color: #ddd;
+    }
+    :root[data-theme="auto"] #chart svg text {
+        fill: #ccc;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root[data-theme="auto"] .filter-controls {
+        background: white;
+        border-color: #eee;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    :root[data-theme="auto"] .filter-controls label {
+        color: #333;
+    }
+    :root[data-theme="auto"] #commit-progress {
+        background: #e8e8e8;
+    }
+    :root[data-theme="auto"] #commit-progress::-webkit-slider-thumb {
+        background: #9b59b6;
+        border: 2px solid white;
+    }
+    :root[data-theme="auto"] #commit-time {
+        background: #f8f8f8;
+        color: #333;
+    }
+    :root[data-theme="auto"] .step {
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    :root[data-theme="auto"] .step:hover {
+        background: rgba(155, 89, 182, 0.1);
+    }
+    :root[data-theme="auto"] .legend {
+        background: rgba(0, 0, 0, 0.03);
+    }
+    :root[data-theme="auto"] .legend h3 {
+        color: #666;
+    }
+    :root[data-theme="auto"] .legend-item {
+        color: #555;
+    }
+    :root[data-theme="auto"] .files-grid > div {
+        background: rgba(0, 0, 0, 0.02);
+    }
+    :root[data-theme="auto"] .files-grid dt {
+        color: #333;
+    }
+    :root[data-theme="auto"] #chart svg text {
+        fill: #555;
+    }
+}
+
+/* Scrollytelling layout */
+#scrolly-1 {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+#scrolly-1 > * {
+    min-width: 0;
+}
+
+#scatter-plot {
+    flex: 3;
+}
+
+/* Story block styling */
+#scatter-story {
+    flex: 1.2;
+    max-height: 650px;
+    overflow-y: scroll !important;
+    padding-right: 1rem;
+    scrollbar-width: auto;
+    border-right: 2px solid rgba(155, 89, 182, 0.3);
+}
+
+/* Base scroll bar */
+#scatter-story::-webkit-scrollbar {
+    width: 10px;
+    display: block !important;
+}
+
+#scatter-story::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#scatter-story::-webkit-scrollbar-thumb {
+    background: #9b59b6;
+    border-radius: 5px;
+    cursor: pointer;
+    min-height: 40px;
+}
+
+#scatter-story::-webkit-scrollbar-thumb:hover {
+    background: #bb86fc;
+}
+
+/* Dark mode scroll bar */
+:root[data-theme="dark"] #scatter-story::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] #scatter-story::-webkit-scrollbar-thumb {
+    background: #bb86fc;
+}
+
+:root[data-theme="dark"] #scatter-story::-webkit-scrollbar-thumb:hover {
+    background: #d4a5ff;
+}
+
+/* Automatic mode scroll bar - matches dark mode when system is dark */
+@media (prefers-color-scheme: dark) {
+    :root[data-theme="auto"] #scatter-story::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    :root[data-theme="auto"] #scatter-story::-webkit-scrollbar-thumb {
+        background: #bb86fc;
+    }
+    :root[data-theme="auto"] #scatter-story::-webkit-scrollbar-thumb:hover {
+        background: #d4a5ff;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root[data-theme="auto"] #scatter-story::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    :root[data-theme="auto"] #scatter-story::-webkit-scrollbar-thumb {
+        background: #9b59b6;
+    }
+    :root[data-theme="auto"] #scatter-story::-webkit-scrollbar-thumb:hover {
+        background: #bb86fc;
+    }
+}
+
+/* Scroll hint */
+#scatter-story::after {
+    content: '';
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
+    pointer-events: none;
+    display: block;
+    margin-top: -30px;
+}
+
+/* Step styling */
+.step {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.step:hover {
+    background: rgba(155, 89, 182, 0.1);
+    border-color: #9b59b6;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.step-content p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+}
+
+.step a {
+    color: #9b59b6;
+}
+
+/* Dark mode step */
+:root[data-theme="dark"] .step {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="dark"] .step:hover {
+    background: rgba(155, 89, 182, 0.2);
+    border-color: #9b59b6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Automatic mode step */
+@media (prefers-color-scheme: dark) {
+    :root[data-theme="auto"] .step {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    :root[data-theme="auto"] .step:hover {
+        background: rgba(155, 89, 182, 0.2);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root[data-theme="auto"] .step {
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    :root[data-theme="auto"] .step:hover {
+        background: rgba(155, 89, 182, 0.1);
+    }
+}
+
+/* Chart container */
+#chart {
+    width: 100%;
+    margin: 1rem 0;
+    display: block;
+    overflow-x: auto;
+    padding-left: 10px;
+}
+
+#chart svg {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 550px;
+    display: block;
+    background: transparent;
+    overflow: visible !important;
+}
+
+/* Circles - NO BORDERS */
+#chart svg circle {
+    cursor: pointer;
+    stroke: none;
+}
+
+/* Axis lines - consistent color for dark and auto */
+:root[data-theme="dark"] #chart svg line,
+:root[data-theme="dark"] #chart svg path,
+:root[data-theme="auto"] #chart svg line,
+:root[data-theme="auto"] #chart svg path {
+    stroke: #777 !important;
+    stroke-width: 1px !important;
+}
+
+:root[data-theme="light"] #chart svg line,
+:root[data-theme="light"] #chart svg path {
+    stroke: #666 !important;
+    stroke-width: 1.5px !important;
+}
+
+/* Gridlines */
+.gridlines line {
+    stroke: #e0e0e0;
+    stroke-opacity: 0.4;
+    stroke-dasharray: 3, 3;
+}
+
+:root[data-theme="dark"] .gridlines line,
+:root[data-theme="auto"] .gridlines line {
+    stroke: #555;
+    stroke-opacity: 0.4;
+}
+
+:root[data-theme="light"] .gridlines line {
+    stroke: #aaa !important;
+    stroke-opacity: 0.8 !important;
+    stroke-dasharray: 4, 4 !important;
+}
+
+/* Axis text */
+:root[data-theme="dark"] #chart svg text,
+:root[data-theme="auto"] #chart svg text {
+    fill: #ccc !important;
+}
+
+:root[data-theme="light"] #chart svg text {
+    fill: #333 !important;
+    font-weight: 600 !important;
+}
+
+/* Domain lines */
+:root[data-theme="dark"] #chart svg .domain,
+:root[data-theme="auto"] #chart svg .domain {
+    stroke: #777 !important;
+    stroke-width: 1px !important;
+}
+
+:root[data-theme="light"] #chart svg .domain {
+    stroke: #444 !important;
+    stroke-width: 2px !important;
+}
+
+/* Files grid */
+.files-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1rem 0;
+}
+
+.files-grid > div {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 12px;
+}
+
+.files-grid dt {
+    font-family: monospace;
+    font-size: 0.85rem;
+    word-break: break-word;
+    color: #333;
+}
+
+.files-grid dt small {
+    font-size: 0.7rem;
+    color: #888;
+}
+
+.files-grid dd {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    margin: 0;
+    align-items: center;
+}
+
+/* Line dots */
+.loc {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 2px;
+    transition: transform 0.1s ease;
+}
+
+.loc:hover {
+    transform: scale(1.5);
+    border-radius: 50%;
+}
+
+/* Light mode files */
+:root[data-theme="light"] .files-grid > div {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="light"] .files-grid dt {
+    color: #1a1a2e;
+}
+
+/* Dark mode files */
+:root[data-theme="dark"] .files-grid > div,
+:root[data-theme="auto"] .files-grid > div {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme="dark"] .files-grid dt,
+:root[data-theme="auto"] .files-grid dt {
+    color: #ddd;
+}
+
+/* Legend */
+.legend {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.legend h3 {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    color: #555;
+}
+
+.legend-swatch {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 2px;
+}
+
+/* Light mode legend */
+:root[data-theme="light"] .legend {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .legend h3 {
+    color: #333;
+}
+
+/* Dark mode legend */
+:root[data-theme="dark"] .legend,
+:root[data-theme="auto"] .legend {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+:root[data-theme="dark"] .legend h3,
+:root[data-theme="auto"] .legend h3 {
+    color: #aaa;
+}
+
+:root[data-theme="dark"] .legend-item,
+:root[data-theme="auto"] .legend-item {
+    color: #ccc;
+}
+
+/* Tooltip */
+#commit-tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+#commit-tooltip dt {
+    color: #9b59b6;
+    font-weight: bold;
+}
+
+#commit-tooltip dd {
+    margin: 0 0 0.3rem 0;
+}
+
+/* Responsive */
+@media (min-width: 1200px) {
+    #chart svg {
+        min-height: 650px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #scrolly-1 {
+        flex-direction: column;
+    }
+    #scatter-plot {
+        position: relative;
+        flex: 1;
+    }
+    #scatter-story {
+        flex: 1;
+        max-height: none;
+        border-right: none;
+    }
+    .files-grid > div {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 16px;
+    }
+    #commit-time {
+        text-align: center;
+    }
+    #chart svg {
+        min-height: 400px !important;
+    }
+}

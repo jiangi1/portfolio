@@ -5,22 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Analysis - Isabella Jiang</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="meta.css">
     <script type="module" src="../global.js"></script>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="meta.js"></script>
 </head>
 <body>
     <h1>Codebase Analysis</h1>
     <p>Statistical analysis of my portfolio codebase.</p>
     
+    <!-- Slider -->
+    <div class="filter-controls">
+        <label>
+            Show commits until:
+            <input type="range" id="commit-progress" min="0" max="100" value="100">
+        </label>
+        <time id="commit-time"></time>
+    </div>
+    
+    <!-- Stats -->
     <div id="stats" class="stats-container"></div>
     
-    <h2>Commits by Time of Day</h2>
-    <div id="chart"></div>
-    <p id="selection-count">No commits selected</p>
+    <!-- Scatter plot + Stories side by side -->
+    <div id="scrolly-1">
+        <div id="scatter-story"></div>
+        <div id="scatter-plot">
+            <h2>Commits by Time of Day</h2>
+            <div id="chart"></div>
+        </div>
+    </div>
     
-    <h3>Language Breakdown for Selected Commits</h3>
-    <dl id="language-breakdown" class="stats"></dl>
+    <!-- Files visualization -->
+    <h2>Files by Size</h2>
+    <p>Each dot represents one line of code.</p>
+    <dl id="files" class="files-grid"></dl>
     
+    <!-- Legend -->
+    <div class="legend">
+        <h3>File Types</h3>
+        <div class="legend-items">
+            <div class="legend-item"><span class="legend-swatch" style="background: #4c72b0"></span> JavaScript</div>
+            <div class="legend-item"><span class="legend-swatch" style="background: #dd8452"></span> CSS</div>
+            <div class="legend-item"><span class="legend-swatch" style="background: #55a868"></span> HTML</div>
+            <div class="legend-item"><span class="legend-swatch" style="background: #c44e52"></span> JSON</div>
+            <div class="legend-item"><span class="legend-swatch" style="background: #9467bd"></span> Other</div>
+        </div>
+    </div>
+    
+    <!-- Tooltip -->
     <dl id="commit-tooltip" class="info tooltip" hidden></dl>
 </body>
 </html>
