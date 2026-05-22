@@ -263,6 +263,17 @@ function renderFiles(commitsData) {
         return;
     }
     
+    // Define consistent colors for file types
+    const typeColors = {
+        'js': '#4c72b0',      // Blue for JavaScript
+        'css': '#dd8452',     // Orange for CSS
+        'html': '#55a868',    // Green for HTML
+        'json': '#c44e52',    // Red for JSON
+        'svg': '#8172b2',     // Purple for SVG
+        'md': '#ccb974',      // Yellow for Markdown
+        'unknown': '#9467bd'  // Light purple for other
+    };
+    
     let files = d3.groups(lines, d => d.file)
         .map(([name, fileLines]) => ({ 
             name: name, 
@@ -279,15 +290,44 @@ function renderFiles(commitsData) {
         div.append('dt').html(`<code>${file.name}</code> <small>(${file.count} lines)</small>`);
         const dd = div.append('dd');
         
+        // Get color based on file type
+        const dotColor = typeColors[file.type] || typeColors['unknown'];
+        
         file.lines.forEach(line => {
             dd.append('div')
                 .attr('class', 'loc')
-                .style('--color', fileColorScale(file.type))
-                .attr('title', `${file.name} line ${line.line}`)
-                .style('background', 'var(--color)');
+                .style('background', dotColor)
+                .attr('title', `${file.name} line ${line.line}`);
         });
     });
 }
+
+function renderLegend() {
+    const typeColors = {
+        'js': { color: '#4c72b0', name: 'JavaScript' },
+        'css': { color: '#dd8452', name: 'CSS' },
+        'html': { color: '#55a868', name: 'HTML' },
+        'json': { color: '#c44e52', name: 'JSON' },
+        'svg': { color: '#8172b2', name: 'SVG' },
+        'md': { color: '#ccb974', name: 'Markdown' },
+        'unknown': { color: '#9467bd', name: 'Other' }
+    };
+    
+    const legendContainer = d3.select('#legend-items');
+    legendContainer.html('');
+    
+    Object.entries(typeColors).forEach(([key, value]) => {
+        legendContainer.append('div')
+            .attr('class', 'legend-item')
+            .html(`
+                <span class="legend-swatch" style="background: ${value.color}"></span>
+                <span>${value.name}</span>
+            `);
+    });
+}
+
+// Call renderLegend() after loading data
+renderLegend();
 
 // Generate stories based on filtered commits
 function generateStories(filteredCommitsData) {
